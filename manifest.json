@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Twitter Feed Hider",
+    "description": "Silence the noise for a bit every day.",
+    "version": "0.1",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://twitter.com/*", 
+                "http://twitter.com/*"
+            ],
+            "js": ["content-script.js"]
+        }
+    ],
+    "web_accessible_resources" : ["script.js"],
+    "permissions": [
+        "http://twitter.com/",
+        "https://twitter.com/",
+        "activeTab",
+        "tabs"
+    ]
+}

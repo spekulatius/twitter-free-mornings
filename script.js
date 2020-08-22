@@ -1,17 +1,34 @@
 
 function isAlreadyInjected() {
-    return document.querySelector('#nfe-container') != null
+    return document.querySelector('#timer-container') != null
 }
 
-function injectUI(container) {
-    const nfeContainer = document.createElement('div')
-    nfeContainer.id = 'nfe-container'
-    container.appendChild(nfeContainer)
+function injectUI(timelineParent) {
+    const container = document.createElement('div')
+    container.id = 'timer-container'
+    timelineParent.appendChild(container)
 
-    const textNode = document.createTextNode('heyyyy')
-    nfeContainer.appendChild(textNode)
+    const header = document.createElement('p')
+    const headerText = document.createTextNode('Don\'t you have something better to do? 🤔')
+    header.appendChild(headerText)
+    container.appendChild(header)
 
-    nfeContainer.style.color = 'red'
+    const timer = document.createElement('p')
+    const timerText = document.createTextNode('00:00:00')
+    timer.appendChild(timerText)
+    container.appendChild(timer)
+
+    const footer = document.createElement('p')
+    const footerText = document.createTextNode('until you can scroll your life away again')
+    footer.appendChild(footerText)
+    container.appendChild(footer)
+
+    container.style.color = 'white'
+    container.style.textAlign = 'center'
+    container.style.fontFamily = 'monospace'
+    container.style.paddingTop = '20px'
+    container.style.fontSize = '20px'
+    container.style.lineHeight = '40px'
 }
 
 function eradicate() {
@@ -24,17 +41,19 @@ function eradicate() {
             return
         } else {
             timeline.style.display = 'none'
-            sidebar.style.display = 'none'
+            if (sidebar != null) {
+                sidebar.style.display = 'none'
+            }
         }
 
-        const container = timeline.parentNode
+        const timelineParent = timeline.parentNode
 
         // Add container with timer and copy
-        if (container && !isAlreadyInjected()) {
-            injectUI(container)
-            
+        if (timelineParent && !isAlreadyInjected()) {
+            injectUI(timelineParent)
+        } else if (isAlreadyInjected()) {
+            // TODO: update timer
         }
-
     }
     setInterval(eradicateRetry, 1000)
 }

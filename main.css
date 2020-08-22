@@ -2,11 +2,10 @@
     background-color: red;
 }
 
-#nfe-container {
-	font-family: sans-serif;
+#timer-container {
+	background-color: red;
+	/* font-family: sans-serif;
 	font-weight: normal;
 	line-height: 1.4;
-
-	/* Needed for detecting the background color with getComputedStyle */
-	background-color: inherit;
+	background-color: inherit; */
 }

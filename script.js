@@ -31,21 +31,15 @@ function injectUI(timelineParent) {
     container.style.lineHeight = '40px'
 }
 
-function eradicate() {
-    function eradicateRetry() {
-        const timeline = document.querySelector(`[aria-label="Timeline: Your Home Timeline"]`)
-        const sidebar = document.querySelector(`[data-testid="sidebarColumn"]`)
-        
+function replaceTimeline() {
+    function replaceTimelineRetry() {
+        const timeline = document.querySelector(`[aria-label="Timeline: Your Home Timeline"]`)        
         // If the site has loaded, remove the timeline and sidebar
         if (timeline == null) {
             return
         } else {
             timeline.style.display = 'none'
-            if (sidebar != null) {
-                sidebar.style.display = 'none'
-            }
         }
-
         const timelineParent = timeline.parentNode
 
         // Add container with timer and copy
@@ -55,7 +49,20 @@ function eradicate() {
             // TODO: update timer
         }
     }
-    setInterval(eradicateRetry, 1000)
+    setInterval(replaceTimelineRetry, 1000)
+}
+
+function removeSidebar() {
+    function removeSidebarRetry() {
+        const sidebar = document.querySelector(`[data-testid="sidebarColumn"]`)
+        if (sidebar == null) {
+            return
+        } else {
+            sidebar.style.display = 'none'
+        }
+
+    }
+    setInterval(removeSidebarRetry, 1000)
 }
 
 // If between 8am and 5pm
@@ -70,6 +77,10 @@ function inTime() {
     return true
 }
 
+removeSidebar()
+
 if (inTime()) {
-    eradicate()
+    replaceTimeline()
 }
+
+

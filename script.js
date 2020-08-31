@@ -1,13 +1,12 @@
 
-function isAlreadyInjected() {
-    return document.querySelector('#timer-container') != null
-}
-
 function injectUI(timelineParent) {
-
     prevContainer = document.querySelector('#timer-container')
-
     if (prevContainer != null) {
+        // If countdown as expired, leave the container with the message
+        paragraphTags = document.querySelectorAll('p')
+        if (paragraphTags[1].innerText.startsWith('00:00:00')) {
+            return
+        }
         prevContainer.remove()
     }
 
@@ -51,11 +50,7 @@ function replaceTimeline() {
         const timelineParent = timeline.parentNode
 
         // Add container with timer and copy
-        // if (timelineParent && !isAlreadyInjected()) {
         injectUI(timelineParent)
-        // } else if (isAlreadyInjected()) {
-            // TODO: update timer
-        // }
     }
     setInterval(replaceTimelineRetry, 1000)
 }
@@ -69,7 +64,6 @@ function removeSidebar() {
             sidebar.style.display = 'none'
             // sidebar.remove()
         }
-
     }
     setInterval(removeSidebarRetry, 1000)
 }
@@ -83,27 +77,22 @@ function inTime() {
     const now = new Date();
     const time = now.getHours() * 60 + now.getMinutes();
     console.log('TIME', start, time, end)
-    return time >= start && time < end;
-    // return true
+    // return time >= start && time < end;
+    return true
 }
 
 function getTimerString() {
-
-    const countDownDate = new Date("Sep 5, 2020 15:37:25").getTime();
-
+    const countDownDate = new Date("Sep 1, 2020 15:20:00").getTime();
     const now = new Date().getTime()
-
     const distance = countDownDate - now
-
 
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
     const seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
-    return formatNumber(hours) + ':' + formatNumber(minutes) + ':' + formatNumber(seconds)
-
-
-
+    const timerString = formatNumber(hours) + ':' + formatNumber(minutes) + ':' + formatNumber(seconds)
+    const refreshMessage = timerString === '00:00:00' ? '  (refresh the page)' : ''
+    return timerString + refreshMessage
 }
 
 function formatNumber(num) {

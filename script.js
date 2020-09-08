@@ -62,29 +62,25 @@ function removeSidebar() {
             return
         } else {
             sidebar.style.display = 'none'
-            // sidebar.remove()
         }
     }
     setInterval(removeSidebarRetry, 1000)
 }
 
-// If between 8am and 5pm
-const start = 8 * 60 + 0;
-const end = 17 * 60 + 0;
+const countDownDate = new Date("Sep 1, 2030 9:34:00")
+const end = countDownDate.getHours() * 60 + countDownDate.getMinutes()
 
 function inTime() {
-    // TODO there's probably something wrong with time zones here
-    const now = new Date();
-    const time = now.getHours() * 60 + now.getMinutes();
+    const now = new Date()
+    const time = now.getHours() * 60 + now.getMinutes()
     console.log('TIME', start, time, end)
-    // return time >= start && time < end;
-    return true
+    return time < end
 }
 
 function getTimerString() {
-    const countDownDate = new Date("Sep 1, 2020 15:20:00").getTime();
+    const countDownTime = countDownDate.getTime()
     const now = new Date().getTime()
-    const distance = countDownDate - now
+    const distance = countDownTime - now
 
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
@@ -107,5 +103,3 @@ removeSidebar()
 if (inTime()) {
     replaceTimeline()
 }
-
-

@@ -73,7 +73,6 @@ const end = countDownDate.getHours() * 60 + countDownDate.getMinutes()
 function inTime() {
     const now = new Date()
     const time = now.getHours() * 60 + now.getMinutes()
-    console.log('TIME', start, time, end)
     return time < end
 }
 

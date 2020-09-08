@@ -67,7 +67,7 @@ function removeSidebar() {
     setInterval(removeSidebarRetry, 1000)
 }
 
-const countDownDate = new Date("Sep 1, 2030 9:34:00")
+const countDownDate = new Date("Sep 1, 2030 11:00:00")
 const end = countDownDate.getHours() * 60 + countDownDate.getMinutes()
 
 function inTime() {

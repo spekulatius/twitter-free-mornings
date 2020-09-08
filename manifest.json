@@ -21,10 +21,6 @@
     "web_accessible_resources" : ["script.js"],
     "permissions": [
         "http://twitter.com/",
-        "https://twitter.com/",
-        "activeTab",
-        "tabs",
-        "storage",
-        "declarativeContent"
+        "https://twitter.com/"
     ]
 }
